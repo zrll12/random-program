@@ -3,78 +3,21 @@
 #include <conio.h>
 #include <stdlib.h>
 #include <time.h>
-#include <cstring>
+#include "command.h"
+#include "config.h"
 using namespace std;
-int n1;
-string lname[1000];
 void print_main()
 {
 	cout<<"#############################################"<<endl;
-	cout<<"#           »¶Ó­Ê¹ÓÃ³éºÅÏµÍ³   v2.0         #"<<endl;
-	cout<<"#              Çë°´[1]Ö±½Ó³éºÅ              #"<<endl;
-	cout<<"#               °´[2]¼ÓÔØÃûµ¥               #"<<endl;
-	cout<<"#               °´[3]ÐÂ½¨Ãûµ¥               #"<<endl;
-	cout<<"#              °´[4]²é¿´°æ±¾ÐÅÏ¢            #"<<endl;
-	cout<<"#                 °´[5]ÍË³ö                 #"<<endl;
+	cout<<"#           æ¬¢è¿Žä½¿ç”¨æŠ½å·ç³»ç»Ÿ   v2.1         #"<<endl;
+	cout<<"#              è¯·æŒ‰[1]ç›´æŽ¥æŠ½å·              #"<<endl;
+	cout<<"#               æŒ‰[2]åŠ è½½åå•               #"<<endl;
+	cout<<"#               æŒ‰[3]æ–°å»ºåå•               #"<<endl;
+	cout<<"#             æŒ‰[4]æŸ¥çœ‹ç‰ˆæœ¬ä¿¡æ¯             #"<<endl;
+	cout<<"#               æŒ‰[5]æ›´æ”¹è®¾ç½®               #"<<endl;
+	cout<<"#                 æŒ‰[6]é€€å‡º                 #"<<endl;
 	cout<<"#############################################"<<endl;
 	return;
-}
-void info()
-{
-	cout<<"³ÌÐò°æ±¾£º2.0"<<endl;
-	cout<<"ÄÚ²¿°æ±¾£º190203"<<endl;
-	cout<<"°æÈ¨¹ézrlËùÓÐ"<<endl;
-	getch();
-	return; 
-}
-void listc()
-{
-	ofstream of;
-	char name[256];
-	char a[256];
-	cin>>a;
-	of.open(a);
-	int num;
-	cin>>num;
-	of<<num<<endl;
-	cout<<"ÎÄ¼þ´´½¨³É¹¦£¬ÏÂÃæÇëÊäÈëÈËÃûÍê³É´´½¨£¨Ã¿¸öÈËÃûÖ®¼ä´ò¿Õ¸ñ»ò»»ÐÐ£©"<<endl;
-	for(int i=1;i<=num;i++)
-	{
-		cin>>name;
-		of<<name<<endl;
-	}
-	cout<<"ÎÄ¼þ"<<a<<"´´½¨³É¹¦"<<endl;
-	return; 
-}
-int listr()
-{
-	char n[256];
-	cin>>n;
-	ifstream of(n);
-	of>>n1;
-	int i;
-	for(i=1;i<=n1;i++)
-	{
-		of>>lname[i];
-	}
-	if(n1!=0)
-	{
-	   cout<<"ÎÄ¼þ"<<n<<"¶ÁÈ¡³É¹¦£¡"<<endl;
-	   return 0;
-    }
-    else
-       cout<<"ÎÄ¼þ"<<n<<"¶ÁÈ¡Ê§°Ü£¬¿ÉÄÜÒòÎªÉ±¶¾Èí¼þ×èÖ¹»òÎÄ¼þÒÑ¾­Ëð»µ"<<endl;
-    return 1;
-}
-int radom(int n)
-{
-int j=0;
-	while(j==0)
-	{
-	   srand((unsigned)time(NULL));
-   	   j = rand() % n;
-	}
-	return j;
 }
 int main()
 {
@@ -100,17 +43,16 @@ int main()
 			{
 				if(ifread==false)
 				{
-					cout<<"ÇëÊäÈëÄÜ³éµ½µÄ×î´óÖµ£¨×îÐ¡ÖµÎª0£©:";
+					cout<<"è¯·è¾“å…¥èƒ½æŠ½åˆ°çš„æœ€å¤§å€¼ï¼ˆæœ€å°å€¼ä¸º0ï¼‰:";
 				    cin>>n;
-			        cout<<radom(n);
+			        cout<<randm(n);
 				}
 				else
-					cout<<lname[radom(n)]<<endl;
-				getch();
+					cout<<lname[randm(n)]<<endl;
 			}
 			else if(input=='2')
 			{
-				cout<<"ÊäÈëÎÄ¼þÃû£º";
+				cout<<"è¾“å…¥æ–‡ä»¶åï¼š";
 				ifread=true;
 				if(listr()==1)
 				   ifread=false;
@@ -120,11 +62,12 @@ int main()
 			else if(input=='4')
 			    info();
 			else if(input=='5')
+			    pconfig();
+			else if(input=='6')
 			    return 0;
+			system("pause");
 			system("cls");
 		}
 	}
-	system("pause");
 	return 0;
 }
-
