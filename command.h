@@ -9,13 +9,14 @@ int nu;
 bool ir=false;
 int help()
 {
-	cout<<"ָ���б���"<<endl;
-	cout<<"random <int:n>����1~n֮�����ȡһ������"<<endl;
-	cout<<"cls�����������Ļ"<<endl;
-	cout<<"info����ʾϵͳ��Ϣ"<<endl;
-	cout<<"exit���˳�����"<<endl;
-	cout<<"listc <string:m> <int:n>������һ����Ϊm,����n��Ԫ�ص��б��ļ�"<<endl;
-	cout<<"listr <string:m>����ȡ��Ϊm���ļ�"<<endl;
+	cout<<"指令列表："<<endl;
+	cout<<"random [int:n]：从1~n之间随机取一个整数。如果已经读取列表，则不输入n"<<endl;
+	cout<<"cls：清空整个屏幕"<<endl;
+	cout<<"info：显示系统信息"<<endl;
+	cout<<"exit：退出程序"<<endl;
+	cout<<"listc <string:m> <int:n>：创建一个名为m,包含n个元素的列表文件"<<endl;
+	cout<<"listr <string:m>：读取名为m的文件"<<endl;
+	cout<<"注：<>中为必填，[]中为条件性填写"<<endl;
 	return 0;
 }
 int randm(int n)
@@ -31,9 +32,9 @@ int randm(int n)
 }
 int info()
 {
-	cout<<"ϵͳ�汾��2.0"<<endl;
-	cout<<"�ڲ��汾��190203"<<endl;
-	cout<<"��Ȩ��zrl����"<<endl;
+	cout<<"系统版本：2.0"<<endl;
+	cout<<"内部版本：190203"<<endl;
+	cout<<"版权归zrl所有"<<endl;
 	return 0;
 }
 int listc()
@@ -46,13 +47,13 @@ int listc()
 	int num;
 	cin>>num;
 	of<<num<<endl;
-	cout<<"�ļ������ɹ�������������������ɴ�����ÿ������֮���ո���У�"<<endl;
+	cout<<"文件创建成功，下面请输入人名完成创建（每个人名之间打空格或换行）"<<endl;
 	for(int i=1;i<=num;i++)
 	{
 		cin>>name;
 		of<<name<<endl;
 	}
-	cout<<"�ļ�"<<a<<"�����ɹ�"<<endl;
+	cout<<"文件"<<a<<"创建成功"<<endl;
 	return 0; 
 }
 int listr()
@@ -70,9 +71,9 @@ int listr()
 	if(n1!=0)
 	{
 	   ir=true;
-	   cout<<"�ļ�"<<n<<"��ȡ�ɹ���"<<endl;
+	   cout<<"文件"<<n<<"读取成功！"<<endl;
     }
     else
-       cout<<"�ļ�"<<n<<"��ȡʧ�ܣ�������Ϊɱ��������ֹ���ļ��Ѿ���"<<endl; 
+       cout<<"文件"<<n<<"读取失败，可能因为杀毒软件阻止或文件已经损坏"<<endl; 
     return 0;
 }
