@@ -3,87 +3,16 @@
 #include <stdlib.h>
 #include <time.h>
 #include <fstream> 
+#include "command.h"
+#include "config.h"
 using namespace std;
-string zhil;
-char lname[256][100];
-int n1;
-int nu;
-bool ir=false;
-int help()
-{
-	cout<<"Ö¸ÁîÁĞ±í£º"<<endl;
-	cout<<"random <int:n>£º´Ó1~nÖ®¼äËæ»úÈ¡Ò»¸öÕûÊı"<<endl;
-	cout<<"cls£ºÇå¿ÕÕû¸öÆÁÄ»"<<endl;
-	cout<<"info£ºÏÔÊ¾ÏµÍ³ĞÅÏ¢"<<endl;
-	cout<<"exit£ºÍË³ö³ÌĞò"<<endl;
-	cout<<"listc <string:m> <int:n>£º´´½¨Ò»¸öÃûÎªm,°üº¬n¸öÔªËØµÄÁĞ±íÎÄ¼ş"<<endl;
-	cout<<"listr <string:m>£º¶ÁÈ¡ÃûÎªmµÄÎÄ¼ş"<<endl;
-	return 0;
-}
-int randm(int n)
-{
-	int j=0;
-	while(j==nu)
-	{
-	   srand((unsigned)time(NULL));
-   	   j = rand() % n;
-	}
-	nu=j;
-	return j;
-}
-int info()
-{
-	cout<<"ÏµÍ³°æ±¾£º2.0"<<endl;
-	cout<<"ÄÚ²¿°æ±¾£º190203"<<endl;
-	cout<<"°æÈ¨¹ézrlËùÓĞ"<<endl;
-	return 0;
-}
-int listc()
-{
-	ofstream of;
-	char name[256];
-	char a[256];
-	cin>>a;
-	of.open(a);
-	int num;
-	cin>>num;
-	of<<num<<endl;
-	cout<<"ÎÄ¼ş´´½¨³É¹¦£¬ÏÂÃæÇëÊäÈëÈËÃûÍê³É´´½¨£¨Ã¿¸öÈËÃûÖ®¼ä´ò¿Õ¸ñ»ò»»ĞĞ£©"<<endl;
-	for(int i=1;i<=num;i++)
-	{
-		cin>>name;
-		of<<name<<endl;
-	}
-	cout<<"ÎÄ¼ş"<<a<<"´´½¨³É¹¦"<<endl;
-	return 0; 
-}
-int listr()
-{
-	char n[256];
-	cin>>n;
-	ir=false;
-	ifstream of(n);
-	of>>n1;
-	int i;
-	for(i=1;i<=n1;i++)
-	{
-		of>>lname[i];
-	}
-	if(n1!=0)
-	{
-	   ir=true;
-	   cout<<"ÎÄ¼ş"<<n<<"¶ÁÈ¡³É¹¦£¡"<<endl;
-    }
-    else
-       cout<<"ÎÄ¼ş"<<n<<"¶ÁÈ¡Ê§°Ü£¬¿ÉÄÜÒòÎªÉ±¶¾Èí¼ş×èÖ¹»òÎÄ¼şÒÑ¾­Ëğ»µ"<<endl; 
-}
 int main()
 {
 	int num,cho; 
 	system("cls");
 	cout<<"#######################################"<<endl;
-	cout<<"##      »¶Ó­Ê¹ÓÃzrlµÄ³éºÅÏµÍ³        ##"<<endl;
-	cout<<"##      ²éÑ¯Ö¸ÁîÁĞ±íÇëÊäÈë\"help\"     ##"<<endl;
+	cout<<"##      æ¬¢è¿ä½¿ç”¨zrlçš„æŠ½å·ç³»ç»Ÿ        ##"<<endl;
+	cout<<"##      æŸ¥è¯¢æŒ‡ä»¤åˆ—è¡¨è¯·è¾“å…¥\"help\"     ##"<<endl;
 	cout<<"#######################################"<<endl;
 	for(;;)
 	{
@@ -113,9 +42,17 @@ int main()
 		   listc();
         else if(zhil=="listr")
            listr();
+        else if(zhil=="config")
+        {
+		    pconfig();
+		    system("cls");
+		    cout<<"#######################################"<<endl;
+	        cout<<"##      æ¬¢è¿ä½¿ç”¨zrlçš„æŠ½å·ç³»ç»Ÿ        ##"<<endl;
+        	cout<<"##      æŸ¥è¯¢æŒ‡ä»¤åˆ—è¡¨è¯·è¾“å…¥\"help\"     ##"<<endl;
+	        cout<<"#######################################"<<endl;
+		}
 		else
-		   cout<<"Î´ÖªÖ¸Áî£¬¿ÉÄÜÔİÎ´¸üĞÂ"<<endl;
+		   cout<<"æœªçŸ¥æŒ‡ä»¤ï¼Œå¯èƒ½æš‚æœªæ›´æ–°"<<endl;
 	}
 	return 0;
 }
-
