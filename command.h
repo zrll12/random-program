@@ -1,9 +1,11 @@
 #include <stdlib.h>
 #include <time.h>
 #include <fstream>
+#include <string.h>
 using namespace std;
 string zhil;
 char lname[256][100];
+char a[256],n[256];
 int n1;
 int nu;
 bool ir=false;
@@ -16,35 +18,49 @@ int help()
 	cout<<"exit：退出程序"<<endl;
 	cout<<"listc <string:m> <int:n>：创建一个名为m,包含n个元素的列表文件"<<endl;
 	cout<<"listr <string:m>：读取名为m的文件"<<endl;
+	cout<<"tool：进入设置菜单"<<endl;
 	cout<<"注：<>中为必填，[]中为条件性填写"<<endl;
 	return 0;
 }
-int randm(int n)
+void randm()
 {
 	int j=0;
-	while(j==nu || j==0)
+	if(ir==false)
+	{
+	    cout<<"请输入能抽到的最大值（最小值为0）:";
+        cin>>n1;
+    }
+	while(j==nu)
 	{
 	   srand((unsigned)time(NULL));
-   	   j = rand() % n;
+   	   j = rand() % n1;
 	}
 	nu=j;
-	return j;
+	if(ir==true)
+	    cout<<lname[j]<<endl;
+	else
+        cout<<j<<endl;
+	return;
 }
 int info()
 {
-	cout<<"系统版本：2.0"<<endl;
-	cout<<"内部版本：190203"<<endl;
+	cout<<"系统版本：2.0.2"<<endl;
+	cout<<"内部版本：190226"<<endl;
 	cout<<"版权归zrl所有"<<endl;
 	return 0;
 }
-int listc()
+int listc(bool comm)
 {
 	ofstream of;
 	char name[256];
-	char a[256];
-	cin>>a;
+	string a1;
+	cin>>a1;
+	a1+=".lis";
+	strcpy(a,a1.c_str());
 	of.open(a);
 	int num;
+	if(comm==false)
+	   cout<<char(7);
 	cin>>num;
 	of<<num<<endl;
 	cout<<"文件创建成功，下面请输入人名完成创建（每个人名之间打空格或换行）"<<endl;
@@ -58,13 +74,15 @@ int listc()
 }
 int listr()
 {
-	char n[256];
-	cin>>n;
+	string n2;
+	cin>>n2;
+	n2+=".lis";
+	strcpy(n,n2.c_str());
 	ir=false;
 	ifstream of(n);
 	of>>n1;
 	int i;
-	for(i=1;i<=n1;i++)
+	for(i=0;i<n1;i++)
 	{
 		of>>lname[i];
 	}
