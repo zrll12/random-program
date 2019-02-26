@@ -4,7 +4,6 @@
 #include <time.h>
 #include <fstream> 
 #include "command.h"
-#include "config.h"
 using namespace std;
 int main()
 {
@@ -23,28 +22,19 @@ int main()
 	       return 0;
 	    else if(zhil=="random")
 	    {
-	       if(ir==false)
-	       {
-		      cin>>num;
-		      cout<<randm(num)<<endl;
-		   }
-		   else
-		   {
-		   	  cho=randm(n1);
-		   	  cout<<lname[cho]<<endl;
-		   }
+	       randm();
 	    }
 	    else if(zhil=="info")
 	       info();
 	    else if(zhil=="cls")
 		   system("cls"); 
 		else if(zhil=="listc")
-		   listc();
+		   listc(true);
         else if(zhil=="listr")
            listr();
-        else if(zhil=="config")
+        else if(zhil=="tool")
         {
-		    pconfig();
+		    system("tool.exe");
 		    system("cls");
 		    cout<<"#######################################"<<endl;
 	        cout<<"##      欢迎使用zrl的抽号系统        ##"<<endl;
