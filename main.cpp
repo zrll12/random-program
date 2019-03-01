@@ -9,7 +9,7 @@ using namespace std;
 void print_main()
 {
 	cout<<"#############################################"<<endl;
-	cout<<"#           欢迎使用抽号系统   v2.1         #"<<endl;
+	cout<<"#          欢迎使用抽号系统   v2.0.1        #"<<endl;
 	cout<<"#              请按[1]直接抽号              #"<<endl;
 	cout<<"#               按[2]加载名单               #"<<endl;
 	cout<<"#               按[3]新建名单               #"<<endl;
