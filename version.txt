@@ -1,1 +1,1 @@
-211 https://github.com/zhengruilin/random-program/releases/download/v2.0.3/random.zip
+211 https://github.com/zhengruilin/random-program/releases/download/v2.1.0/update.exe
