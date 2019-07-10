@@ -1,17 +1,17 @@
 #include <iostream>
-#include "config.h"
+#include "tool.h"
 #include <string>
 #include <io.h>
 using namespace std;
 void ptools()
 {
 	cout<<"#############################################"<<endl;
-	cout<<"#             ÕâÊÇ±¾³ÌÐòµÄ¹¤¾ßÀ¸            #"<<endl;
-	cout<<"#               °´[1]¸ü¸ÄÉèÖÃ               #"<<endl;
-	cout<<"#              °´[2]×Ô¶¯¼Óºó×º              #"<<endl;
-	cout<<"#         °´[3]É¾³ý²Ëµ¥ÎÄ¼þ(´øºó×º)         #"<<endl;
-	//cout<<"#               °´[4]¼ì²é¸üÐÂ               #"<<endl;
-	cout<<"#                 °´[4]·µ»Ø                 #"<<endl;
+	cout<<"#             è¿™æ˜¯æœ¬ç¨‹åºçš„å·¥å…·æ             #"<<endl;
+	cout<<"#               æŒ‰[1]æ›´æ”¹è®¾ç½®               #"<<endl;
+	cout<<"#              æŒ‰[2]è‡ªåŠ¨åŠ åŽç¼€              #"<<endl;
+	cout<<"#         æŒ‰[3]åˆ é™¤èœå•æ–‡ä»¶(å¸¦åŽç¼€)         #"<<endl;
+	cout<<"#               æŒ‰[4]æ£€æŸ¥æ›´æ–°               #"<<endl;
+	cout<<"#                 æŒ‰[5]è¿”å›ž                 #"<<endl;
 	cout<<"#############################################"<<endl;
 }
 int main()
@@ -25,12 +25,12 @@ int main()
 	    if(putin=='1')
 		{
 			pconfig();
-			return true;
+			return 0;
 		}
 		else if(putin=='2')
 		{
-			string wjm;//wjm£ºÎÄ¼þÃû 
-			cout<<"ÇëÊäÈëÎÄ¼þÃû£º";
+			string wjm;//wjmï¼šæ–‡ä»¶å 
+			cout<<"è¯·è¾“å…¥æ–‡ä»¶åï¼š";
 			cin>>wjm;
 			string name1,comm;
 			name1=wjm+".lis";
@@ -42,13 +42,13 @@ int main()
 			memset(name2,0,sizeof(name2));
 			strcpy(name2,name1.c_str());
 			if(_access(name2,0)==-1)
-				cout<<"¸ü¸ÄÊ§°Ü£¬Çë¼ì²éÉ±¶¾×´Ì¬ºÍ¹ÜÀíÔ±È¨ÏÞ"<<endl;
+				cout<<"æ›´æ”¹å¤±è´¥ï¼Œè¯·æ£€æŸ¥æ€æ¯’çŠ¶æ€å’Œç®¡ç†å‘˜æƒé™"<<endl;
 			else
-				cout<<"¸ü¸Ä³É¹¦£¡"<<endl;
+				cout<<"æ›´æ”¹æˆåŠŸï¼"<<endl;
 		}
 		else if(putin=='3')
 		{
-			cout<<"ÇëÊäÈëÎÄ¼þÃû£¨²»ÓÃ¼Óºó×º£©£º";
+			cout<<"è¯·è¾“å…¥æ–‡ä»¶åï¼ˆä¸ç”¨åŠ åŽç¼€ï¼‰ï¼š";
 			string name;
 			cin>>name;
 			name+=".lis";
@@ -62,13 +62,15 @@ int main()
 			memset(tempname,0,sizeof(tempname));
 			strcpy(tempname,name.c_str());
 			if(_access(tempname,0)==-1)
-			    cout<<"É¾³ý³É¹¦£¡"<<endl;
+			    cout<<"åˆ é™¤æˆåŠŸï¼"<<endl;
 			else
-			    cout<<"É¾³ýÊ§°Ü£¬Çë¼ì²éÉ±¶¾×´Ì¬ºÍ¹ÜÀíÔ±È¨ÏÞ"<<endl;
+			    cout<<"åˆ é™¤å¤±è´¥ï¼Œè¯·æ£€æŸ¥æ€æ¯’çŠ¶æ€å’Œç®¡ç†å‘˜æƒé™"<<endl;
 		}
 		else if(putin=='4')
+		    update();
+		else if(putin=='5')
 		     return 0;
-		cout<<"°´ÈÎÒâ¼ü¼ÌÐø..."<<endl;
+		cout<<"æŒ‰ä»»æ„é”®ç»§ç»­..."<<endl;
 		getch();
 	} 
 }
