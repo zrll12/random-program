@@ -1,23 +1,23 @@
-//±ØĞëÔÚ±àÒëÑ¡ÏîÔö¼Ó-std=c++11 
+//å¿…é¡»åœ¨ç¼–è¯‘é€‰é¡¹å¢åŠ -std=c++11 
 #include <iostream>
 #include <fstream>
 #include <conio.h>
 #include <stdlib.h>
 #include <time.h>
 #include "command.h"
-#include "config.h"
 using namespace std;
 void print_main()
 {
 
 	cout<<"#############################################"<<endl;
-	cout<<"#          »¶Ó­Ê¹ÓÃ³éºÅÏµÍ³   v2.0.1        #"<<endl;
-	cout<<"#              Çë°´[1]Ö±½Ó³éºÅ              #"<<endl;
-	cout<<"#               °´[2]¼ÓÔØÃûµ¥               #"<<endl;
-	cout<<"#               °´[3]ĞÂ½¨Ãûµ¥               #"<<endl;
-	cout<<"#             °´[4]²é¿´°æ±¾ĞÅÏ¢             #"<<endl;
-	cout<<"#               °´[5]¸ü¸ÄÉèÖÃ               #"<<endl;
-	cout<<"#                 °´[6]ÍË³ö                 #"<<endl;
+	cout<<"#          æ¬¢è¿ä½¿ç”¨æŠ½å·ç³»ç»Ÿ   v2.1.0        #"<<endl;
+	cout<<"#              è¯·æŒ‰[1]ç›´æ¥æŠ½å·              #"<<endl;
+	cout<<"#               æŒ‰[2]åŠ è½½åå•               #"<<endl;
+	cout<<"#               æŒ‰[3]æ–°å»ºåå•               #"<<endl;
+	cout<<"#             æŒ‰[4]æŸ¥çœ‹ç‰ˆæœ¬ä¿¡æ¯             #"<<endl;
+	cout<<"#              æŒ‰[5]æ‰“å¼€å·¥å…·æ               #"<<endl;
+	cout<<"#               æŒ‰[6]æ£€æŸ¥æ›´æ–°               #"<<endl;
+	cout<<"#                 æŒ‰[7]é€€å‡º                 #"<<endl;
 	cout<<"#############################################"<<endl;
 	return;
 }
@@ -28,6 +28,7 @@ int main()
 	std::ifstream rcon ("basic.config", std::ifstream::binary);
 	bool ifcomm;
 	rcon>>ifcomm;
+	rcon.close();//fixed:è®°å¾—close(wenge) 
 	//Use command line mod
 	if(ifcomm == true)
 	{
@@ -46,7 +47,7 @@ int main()
 			    randm();
 			else if(input=='2')
 			{
-				cout<<"ÊäÈëÎÄ¼şÃû£º";
+				cout<<"è¾“å…¥æ–‡ä»¶åï¼š";
 				ifread=true;
 				if(listr()==1)
 				   ifread=false;
@@ -56,7 +57,9 @@ int main()
 			else if(input=='4')
 			    info();
 			else if(input=='5')
-			    pconfig();
+			{
+			    system("tool.exe") ;
+			}
 			else if(input=='6')
 			    return 0;
 			system("pause");
@@ -64,5 +67,4 @@ int main()
 		}
 	}
 	return 0;
-
 }
