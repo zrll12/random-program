@@ -6,6 +6,8 @@
 #include <algorithm>
 #include <ctime>
 #include <random>
+#include <Windows.h>
+#include <conio.h>
 using namespace std;
 
 
@@ -14,64 +16,62 @@ using namespace std;
 string zhil;
 char lname[256][100];
 char a[256],n[256];
-int n1,times;//times:ÏÖÔÚËæ»úµ½ÄÄÒ»Î»Í¬Ñ§ 
+int n1,times;//times:ç°åœ¨éšæœºåˆ°å“ªä¸€ä½åŒå­¦
 char name[256];
 bool ir=false;
-int help()
-{
-	cout<<"Ö¸ÁîÁĞ±í£º"<<endl;
-	cout<<"random [int:n]£º´Ó1~nÖ®¼äËæ»úÈ¡Ò»¸öÕûÊı¡£Èç¹ûÒÑ¾­¶ÁÈ¡ÁĞ±í£¬Ôò²»ÊäÈën"<<endl; 
-	cout<<"cls£ºÇå¿ÕÕû¸öÆÁÄ»"<<endl;
-	cout<<"info£ºÏÔÊ¾ÏµÍ³ĞÅÏ¢"<<endl;
-	cout<<"exit£ºÍË³ö³ÌĞò"<<endl;
-	cout<<"listc <string:m> <int:n>£º´´½¨Ò»¸öÃûÎªm,°üº¬n¸öÔªËØµÄÁĞ±íÎÄ¼ş"<<endl;
-	cout<<"listr <string:m>£º¶ÁÈ¡ÃûÎªmµÄÎÄ¼ş"<<endl;
-	cout<<"tool£º½øÈëÉèÖÃ²Ëµ¥"<<endl;
-	cout<<"×¢£º<>ÖĞÎª±ØÌî£¬[]ÖĞÎªÌõ¼şĞÔÌîĞ´"<<endl;
+int help() {
+	cout<<"æŒ‡ä»¤åˆ—è¡¨ï¼š"<<endl;
+	cout<<"random [int:n]ï¼šä»1~nä¹‹é—´éšæœºå–ä¸€ä¸ªæ•´æ•°ã€‚å¦‚æœå·²ç»è¯»å–åˆ—è¡¨ï¼Œåˆ™ä¸è¾“å…¥n"<<endl;
+	cout<<"clsï¼šæ¸…ç©ºæ•´ä¸ªå±å¹•"<<endl;
+	cout<<"infoï¼šæ˜¾ç¤ºç³»ç»Ÿä¿¡æ¯"<<endl;
+	cout<<"exitï¼šé€€å‡ºç¨‹åº"<<endl;
+	cout<<"listc <string:m> <int:n>ï¼šåˆ›å»ºä¸€ä¸ªåä¸ºm,åŒ…å«nä¸ªå…ƒç´ çš„åˆ—è¡¨æ–‡ä»¶"<<endl;
+	cout<<"listr <string:m>ï¼šè¯»å–åä¸ºmçš„æ–‡ä»¶"<<endl;
+	cout<<"toolï¼šè¿›å…¥è®¾ç½®èœå•"<<endl;
+	cout<<"æ³¨ï¼š<>ä¸­ä¸ºå¿…å¡«ï¼Œ[]ä¸­ä¸ºæ¡ä»¶æ€§å¡«å†™"<<endl;
 	return 0;
 }
-void re_upset()//ÖØĞÂ´òÂÒ
-{
-	random_shuffle(lname,lname+n1);
-	    ofstream ow;
-	    ow.open(n);
-	    char comman[265]="del ";
-	    strcat(comman,n); 
-	    system(comman); 
-	    ow<<n1<<endl;
-	    for(int i=0;i<=n1;i++)
-			ow<<lname[i]<<endl;
-		ow.close();
-		return;
+void re_upset() { //é‡æ–°æ‰“ä¹±
+	srand(unsigned(time(0))); //fixed:ä¸ºäº†é¿å…å¯èƒ½çš„é—®é¢˜(wenge) 
+	random_shuffle(lname,lname+n1-1);
+	/*///////////////////////////////////////////bug
+	ofstream ow;
+	ow.open(n);
+	char comman[265]="del ";
+	strcat(comman,n);
+	system(comman);
+	ow<<n1<<endl;
+	for(int i=0; i<=n1; i++)
+		ow<<lname[i]<<endl;
+	ow.close();
+	*/
+	return;
 }
-void randm()
-{
-	if(ir==false)
-	{	
+void randm() {
+	if(ir==false) {
 		mt19937_64 r_a_n_d(time(NULL));
 		uniform_int_distribution<long long> _r_a_n_d_(0,9223372036854775807);
-	    cout<<"ÇëÊäÈëÄÜ³éµ½µÄ×î´óÖµ£¨×îĞ¡ÖµÎª0£©:";
-        cin>>n1;
-	    cout<<rand() % n1<<endl;
-	}
-	else if(ir==true)
-	{
-		if(times>=n1)
-	        re_upset();
+		cout<<"è¯·è¾“å…¥èƒ½æŠ½åˆ°çš„æœ€å¤§å€¼ï¼ˆæœ€å°å€¼ä¸º0ï¼‰:";
+		cin>>n1;
+		cout<<rand() % (n1+1)<<endl;//fixed:å–æ¨¡é”™è¯¯(wenge)
+	} 
+	else /*if(ir==true)*/ {
+		if(times>=n1){
+			re_upset();
+			times=0;//fixed:æŠ½åˆ°n1æ¬¡åä¼šæŠ½åˆ°ç©ºç™½ (wenge)
+		}
 		cout<<lname[times]<<endl;
 		times++;
 	}
 	return;
 }
-int info()
-{
-	cout<<"ÏµÍ³°æ±¾£º2.0.2"<<endl;
-	cout<<"ÄÚ²¿°æ±¾£º190226"<<endl;
-	cout<<"°æÈ¨¹ézrlËùÓĞ"<<endl;
+int info() {
+	cout<<"ç³»ç»Ÿç‰ˆæœ¬ï¼š2.1.0"<<endl;
+	cout<<"å†…éƒ¨ç‰ˆæœ¬ï¼š190416"<<endl;
+	cout<<"ç‰ˆæƒå½’zrlæ‰€æœ‰"<<endl;
 	return 0;
 }
-int listc(bool comm)
-{
+int listc(bool comm) {
 	ofstream of;
 	string a1;
 	cin>>a1;
@@ -80,21 +80,19 @@ int listc(bool comm)
 	of.open(a);
 	int num;
 	if(comm==false)
-	   cout<<char(7);
+		cout<<char(7);
 	cin>>num;
 	of<<num<<endl;
-	cout<<"ÎÄ¼ş´´½¨³É¹¦£¬ÏÂÃæÇëÊäÈëÈËÃûÍê³É´´½¨£¨Ã¿¸öÈËÃûÖ®¼ä´ò¿Õ¸ñ»ò»»ĞĞ£©"<<endl;
-	for(int i=1;i<=num;i++)
-	{
+	cout<<"æ–‡ä»¶åˆ›å»ºæˆåŠŸï¼Œä¸‹é¢è¯·è¾“å…¥äººåå®Œæˆåˆ›å»ºï¼ˆæ¯ä¸ªäººåä¹‹é—´æ‰“ç©ºæ ¼æˆ–æ¢è¡Œï¼‰"<<endl;
+	for(int i=1; i<=num; i++) {
 		cin>>name;
 		of<<name<<endl;
 	}
-	cout<<"ÎÄ¼ş"<<a<<"´´½¨³É¹¦"<<endl;
+	cout<<"æ–‡ä»¶"<<a<<"åˆ›å»ºæˆåŠŸ"<<endl;
 	of.close();
-	return 0; 
+	return 0;
 }
-int listr()
-{
+int listr() {
 	string n2;
 	cin>>n2;
 	n2+=".lis";
@@ -103,31 +101,32 @@ int listr()
 	ifstream of(n);
 	of>>n1;
 	int i=0,counter=0;
-	while(of>>lname[i])
-	{
+	while(of>>lname[i]) {
 		i++;
 		counter++;
 	}
 	of.close();
-	if(n1!=0 && counter==n1)
-	{
-	   ir=true;
-	   cout<<"ÎÄ¼ş"<<n<<"¶ÁÈ¡³É¹¦£¡"<<endl;
-	   random_shuffle(lname,lname+n1);
-	   //Ê¹ÓÃËæ»úºóµÄÃûµ¥Ìæ»»Ö®Ç°µÄ 
-	   ofstream ow;//ow = over_write
-	   ow.open(n);
-	   //ÏÈÉ¾³ıÖ®Ç°µÄ
-	   char comman[265]="del ";//ÓÃÓÚ´¢´æÆ´½ÓºóµÄÃüÁî 
-	   strcat(comman,n); 
-	   system(comman);
-	   //Éú³É´òÂÒºóµÄ 
-	   ow<<n1<<endl;
-	   for(i=0;i<=n1;i++)
-	   	   ow<<lname[i]<<endl;
-	   	ow.close();
-    }
-    else
-       cout<<"ÎÄ¼ş"<<n<<"¶ÁÈ¡Ê§°Ü£¬¿ÉÄÜÒòÎªÉ±¶¾Èí¼ş×èÖ¹»òÎÄ¼şÒÑ¾­Ëğ»µ"<<endl; 
-    return 0;
+	if(n1!=0 && counter==n1) {
+		ir=true;
+		cout<<"æ–‡ä»¶"<<n<<"è¯»å–æˆåŠŸï¼"<<endl;
+		re_upset();
+		/*///////////////////////////////////////bug 
+		random_shuffle(lname,lname+n1);
+		//ä½¿ç”¨éšæœºåçš„åå•æ›¿æ¢ä¹‹å‰çš„
+		ofstream ow;//ow = over_write
+		ow.open(n);
+		//å…ˆåˆ é™¤ä¹‹å‰çš„
+		char comman[265]="del ";//ç”¨äºå‚¨å­˜æ‹¼æ¥åçš„å‘½ä»¤
+		strcat(comman,n);
+		system(comman);
+		//ç”Ÿæˆæ‰“ä¹±åçš„
+		ow<<n1<<endl;
+		for(i=0; i<=n1; i++)
+			ow<<lname[i]<<endl;
+		ow.close();
+		*/
+	}
+	else
+		cout<<"æ–‡ä»¶"<<n<<"è¯»å–å¤±è´¥ï¼Œå¯èƒ½å› ä¸ºæ€æ¯’è½¯ä»¶é˜»æ­¢æˆ–æ–‡ä»¶å·²ç»æŸå"<<endl;
+	return 0;
 }
